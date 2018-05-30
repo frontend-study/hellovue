@@ -1,6 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- <Row>
+      <Menu>
+        <Menu-item>
+          <router-link to="/login">登录</router-link>
+        </Menu-item>
+        <Menu-item>
+          <router-link to="/main">主页</router-link>
+        </Menu-item>
+      </Menu>
+    </Row> -->
+    <!-- <img src="./assets/logo.png"> -->
     <router-view/>
   </div>
 </template>

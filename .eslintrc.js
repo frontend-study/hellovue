@@ -33,5 +33,14 @@ module.exports = {
     
     //关闭禁止混用tab和空格
     "no-mixed-spaces-and-tabs": [0],
+
+    //空行最多不能超过100行
+    // "no-multiple-empty-lines": [0, {"max": 100}]
+
+    //一行结束后面不要有空格
+    "no-trailing-spaces": 0, 
+
+    //
+    "padded-blocks": 0
   }
 }
