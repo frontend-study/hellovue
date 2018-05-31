@@ -30,22 +30,39 @@ export default {
             },
             ruleInline: {
                 user: [
-                    { required: true, message: 'Please fill in the user name', trigger: 'blur' }
+                    { 
+                        required: true, 
+                        message: 'Please fill in the user name', 
+                        trigger: 'blur' 
+                    }
                 ],
                 password: [
-                    { required: true, message: 'Please fill in the password.', trigger: 'blur' },
-                    { type: 'string', min: 1, message: 'The password lengthcannot be less than 6 bits', trigger: 'blur' }
+                    { 
+                        required: true, 
+                        message: 'Please fill in the password.', 
+                        trigger: 'blur' 
+                    },
+                    { 
+                        type: 'string', 
+                        min: 1, 
+                        message: 'The password lengthcannot be less than 6 bits', 
+                        trigger: 'blur'
+                    }
                 ]
             }
         }
     },
     methods: {
         handleSubmit (name) {
-            console.log('## ' + name)
+            console.log('## ' + name);
+            var _router = this.$router;
+            var _notice = this.$Notice;
+
             this.$refs[name].validate((valid) => {
-                console.log('## ' + valid)
+                console.log('## ' + valid);
                 if (valid) {
-                    this.$Message.success('Success!')
+                    
+                    // this.$Message.success('Success!')
                     this.$myajax({
                         url: 'http://localhost:8087/login',
                         method: 'post',
@@ -54,15 +71,19 @@ export default {
                             passwd: 'b'
                         }
                     }).then(function (response) {
-                        console.log('## ' + response)
-                        this.$router.push({name: 'Main'})
+                        console.log('## response ' + response);
+                        _notice.info({
+                            title: '登录成功',
+                            duration: 2
+                        });
+                        _router.push({name: 'Main'});
                     }).catch(function (error) {
-                        console.log('## ' + error)
-                        this.$router.push({name: 'Main'})
-                    })
-                    
-                } else {
-                    this.$Message.error('Fail!')
+                        console.log('## error ' + error);
+                        _router.push({name: 'Main'});
+                    }) 
+                }
+                else {
+                    // this.$Message.error('Fail!')
                 }
             })
         }

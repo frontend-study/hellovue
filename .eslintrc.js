@@ -41,6 +41,12 @@ module.exports = {
     "no-trailing-spaces": 0, 
 
     //
-    "padded-blocks": 0
+    "padded-blocks": 0, 
+
+    // 
+    "brace-style": 0,
+
+    // 末尾的分号
+    "semi": 0
   }
 }
