@@ -63,15 +63,24 @@ export default {
                 if (valid) {
                     
                     // this.$Message.success('Success!')
-                    this.$myajax({
+                    /* this.$myajax({
                         url: 'http://localhost:8087/login',
                         method: 'post',
                         data: {
                             username: 'a',
                             passwd: 'b'
                         }
+                    }) */
+                    this.$http.ajax({
+                        url: '/login',
+                        method: 'post',
+                        data: {
+                            username: 'a',
+                            passwd: 'b'
+                        }
                     }).then(function (response) {
-                        console.log('## response ' + response);
+                        console.log('## response 获取 token ' + response.data.token);
+                        localStorage.token = response.data.token;
                         _notice.info({
                             title: '登录成功',
                             duration: 2

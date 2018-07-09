@@ -47,6 +47,10 @@ module.exports = {
     "brace-style": 0,
 
     // 末尾的分号
-    "semi": 0
+    "semi": 0,
+    // 关闭双引号的验证
+    "quotes": 0,
+    // 关闭注释前的空格
+    "spaced-comment": 0
   }
 }

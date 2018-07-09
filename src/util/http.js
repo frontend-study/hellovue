@@ -4,6 +4,7 @@ import axios from 'axios';
 let http = {};
 
 const ajaxUrl = 'http://localhost:8087';
+
 http.baseUrl = ajaxUrl;
 
 http.ajax = axios.create({
@@ -13,5 +14,8 @@ http.ajax = axios.create({
         token: localStorage.token
     }
 });
+
+// http.ajax = function(uri, method, param) {
+// }
 
 export default http;
