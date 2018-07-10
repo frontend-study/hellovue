@@ -54,12 +54,13 @@ export default {
     },
     methods: {
         handleSubmit (name) {
-            console.log('## ' + name);
+            // console.log('## ' + name); // formInline
             var _router = this.$router;
             var _notice = this.$Notice;
 
             this.$refs[name].validate((valid) => {
-                console.log('## ' + valid);
+                // console.log('## ' + valid); // true
+                console.log("## localStorage.token " + localStorage.token);
                 if (valid) {
                     
                     // this.$Message.success('Success!')
@@ -72,7 +73,7 @@ export default {
                         }
                     }) */
                     this.$http.ajax({
-                        url: '/login',
+                        url: '/logine',
                         method: 'post',
                         data: {
                             username: 'a',
@@ -80,7 +81,10 @@ export default {
                         }
                     }).then(function (response) {
                         console.log('## response 获取 token ' + response.data.token);
+                        console.log("## old token " + localStorage.token);
                         localStorage.token = response.data.token;
+                        console.log("## new token " + localStorage.token);
+
                         _notice.info({
                             title: '登录成功',
                             duration: 2

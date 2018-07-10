@@ -51,6 +51,8 @@ module.exports = {
     // 关闭双引号的验证
     "quotes": 0,
     // 关闭注释前的空格
-    "spaced-comment": 0
+    "spaced-comment": 0,
+    // 多个空行
+    "no-multiple-empty-lines": 0
   }
 }
