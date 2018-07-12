@@ -14,7 +14,10 @@ export default {
             url: '/index',
             method: 'get'
         }).then(function (response) {
-            console.log('## Main response ' + response.data);
+            if (response) {
+                console.log('## Main response ' + response.data);
+                console.log("## Main response " + JSON.stringify(response.data));
+            }
         }).catch(function (error) {
             console.log('## Main error ' + error);
         });

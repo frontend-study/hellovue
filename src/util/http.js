@@ -28,6 +28,7 @@ http.ajax.interceptors.response.use(function (response) {
     if (response.data.code === 1001) {
         console.log("响应拦截器 生效");
         _router.push({name: 'Login'});
+        return;
     }
     console.log("响应拦截器 ");
     return response;
