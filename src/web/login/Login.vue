@@ -81,9 +81,9 @@ export default {
                         }
                     }).then(function (response) {
                         console.log('## response 获取 token ' + response.data.token);
-                        console.log("## old token " + localStorage.token);
+                        // console.log("## old token " + localStorage.token);
                         localStorage.token = response.data.token;
-                        console.log("## new token " + localStorage.token);
+                        // console.log("## new token " + localStorage.token);
 
                         _notice.info({
                             title: '登录成功',

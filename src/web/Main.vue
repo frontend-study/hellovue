@@ -12,10 +12,7 @@ export default {
         console.log("## Main ");
         this.$http.ajax({
             url: '/index',
-            method: 'get',
-            headers: {
-                'token': localStorage.token
-            }
+            method: 'get'
         }).then(function (response) {
             console.log('## Main response ' + response.data);
         }).catch(function (error) {

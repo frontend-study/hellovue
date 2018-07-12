@@ -10,10 +10,10 @@ http.baseUrl = ajaxUrl;
 
 http.ajax = axios.create({
     baseURL: ajaxUrl,
-    timeout: 2700, // 2.7 秒
-    headers: {
-        token: localStorage.token
-    }
+    timeout: 2700//, // 2.7 秒
+    // headers: {
+    //     token: localStorage.token
+    // }
 });
 
 // http.ajax = function(uri, method, param) {
@@ -29,7 +29,7 @@ http.ajax.interceptors.response.use(function (response) {
         console.log("响应拦截器 生效");
         _router.push({name: 'Login'});
     }
-    console.log();
+    console.log("响应拦截器 ");
     return response;
 }, function (error) {
     console.log("响应拦截器错误");
@@ -39,6 +39,11 @@ http.ajax.interceptors.response.use(function (response) {
 // 请求拦截器
 http.ajax.interceptors.request.use(function (config) {
     console.log("请求拦截器 " + JSON.stringify(config));
+    console.log("请求拦截器 " + config.headers.token);
+    config.headers.token = localStorage.token;
+    // console.log("请求拦截器 " + JSON.stringify(config));
+    console.log("请求拦截器 " + config.headers.token);
+
     return config;
 }, function (error) {
     console.log("请求拦截器错误");
