@@ -62,16 +62,7 @@ export default {
                 // console.log('## ' + valid); // true
                 console.log("## localStorage.token " + localStorage.token);
                 if (valid) {
-                    
                     // this.$Message.success('Success!')
-                    /* this.$myajax({
-                        url: 'http://localhost:8087/login',
-                        method: 'post',
-                        data: {
-                            username: 'a',
-                            passwd: 'b'
-                        }
-                    }) */
                     this.$http.ajax({
                         url: '/logine',
                         method: 'post',
@@ -80,16 +71,18 @@ export default {
                             passwd: 'b'
                         }
                     }).then(function (response) {
-                        console.log('## response 获取 token ' + response.data.token);
-                        // console.log("## old token " + localStorage.token);
-                        localStorage.token = response.data.token;
-                        // console.log("## new token " + localStorage.token);
-
-                        _notice.info({
-                            title: '登录成功',
-                            duration: 2
-                        });
-                        _router.push({name: 'Main'});
+                        if (response) {
+                            console.log('## response 获取 token ' + response.data.token);
+                            // console.log("## old token " + localStorage.token);
+                            localStorage.token = response.data.token;
+                            // console.log("## new token " + localStorage.token);
+    
+                            _notice.info({
+                                title: '登录成功',
+                                duration: 2
+                            });
+                            _router.push({name: 'Main'});
+                        }
                     }).catch(function (error) {
                         console.log('## error ' + error);
                         _router.push({name: 'Main'});
