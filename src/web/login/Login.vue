@@ -85,7 +85,7 @@ export default {
                         }
                     }).catch(function (error) {
                         console.log('## error ' + error);
-                        _router.push({name: 'Main'});
+                        // _router.push({name: 'Main'});
                     }) 
                 }
                 else {
