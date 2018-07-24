@@ -65,8 +65,8 @@ export default {
                     // this.$Message.success('Success!')
                     this.$http.ajax({
                         url: '/logine',
-                        method: 'post',
-                        data: {
+                        method: 'get',
+                        params: {
                             username: 'a',
                             passwd: 'b'
                         }
