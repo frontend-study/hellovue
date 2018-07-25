@@ -85,6 +85,10 @@ export default {
                         }
                     }).catch(function (error) {
                         console.log('## error ' + error);
+                        _notice.info({
+                            title: error,
+                            duration: 2
+                        });
                         // _router.push({name: 'Main'});
                     }) 
                 }

@@ -15,7 +15,7 @@ export default {
             method: 'get'
         }).then(function (response) {
             if (response) {
-                console.log('## Main response ' + response.data);
+                // console.log('## Main response ' + response.data);
                 console.log("## Main response " + JSON.stringify(response.data));
             }
         }).catch(function (error) {

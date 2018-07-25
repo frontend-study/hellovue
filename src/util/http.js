@@ -30,7 +30,7 @@ http.ajax.interceptors.response.use(function (response) {
         _router.push({name: 'Login'});
         return;
     }
-    console.log("响应拦截器 ");
+    // console.log("响应拦截器 ");
     return response;
 }, function (error) {
     console.log("响应拦截器错误");
@@ -39,7 +39,7 @@ http.ajax.interceptors.response.use(function (response) {
 
 // 请求拦截器
 http.ajax.interceptors.request.use(function (config) {
-    console.log("请求拦截器 " + JSON.stringify(config));
+    // console.log("请求拦截器 " + JSON.stringify(config));
     console.log("请求拦截器 " + config.headers.token);
     config.headers.token = localStorage.token;
     // console.log("请求拦截器 " + JSON.stringify(config));
