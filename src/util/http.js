@@ -24,6 +24,7 @@ let _router = router;
 // 响应拦截器
 http.ajax.interceptors.response.use(function (response) {
     console.log("响应拦截器 " + JSON.stringify(response.data));
+    // console.log(response);
     // console.log("拦截器 " + JSON.parse(response.data));
     if (response.data.code === 1001) {
         console.log("响应拦截器 生效");
@@ -33,22 +34,42 @@ http.ajax.interceptors.response.use(function (response) {
     // console.log("响应拦截器 ");
     return response;
 }, function (error) {
-    console.log("响应拦截器错误");
+    console.log("响应拦截器错误 ");
+    // console.log(JSON.stringify(error));
+    console.log(error.response.data);
     return Promise.reject(error);
 });
+
+// 另一种写法
+/*
+http.ajax.interceptors.response.use(response => {
+    return response;
+}, error => {
+    return error;
+});
+*/
 
 // 请求拦截器
 http.ajax.interceptors.request.use(function (config) {
     // console.log("请求拦截器 " + JSON.stringify(config));
-    console.log("请求拦截器 " + config.headers.token);
+    // console.log("请求拦截器 " + config.headers.token);
     config.headers.token = localStorage.token;
     // console.log("请求拦截器 " + JSON.stringify(config));
-    console.log("请求拦截器 " + config.headers.token);
+    // console.log("请求拦截器 " + config.headers.token);
 
     return config;
 }, function (error) {
     console.log("请求拦截器错误");
     return Promise.reject(error);
 });
+
+// 另一种写法
+/*
+http.ajax.interceptors.request.use(config => {
+    return config;
+}, error => {
+    return error;
+});
+*/
 
 export default http;
