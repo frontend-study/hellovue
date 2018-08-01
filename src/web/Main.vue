@@ -10,6 +10,8 @@
 export default {
     created () {
         console.log("## Main ");
+        let _notice = this.$Notice;
+        
         this.$http.ajax({
             url: '/index',
             method: 'get'
@@ -17,6 +19,10 @@ export default {
             if (response) {
                 // console.log('## Main response ' + response.data);
                 console.log("## Main response " + JSON.stringify(response.data));
+                _notice.info({
+                    title: response.data.message,
+                    duration: 2
+                });
             }
         }).catch(function (error) {
             console.log('## Main error ' + error);
