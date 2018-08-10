@@ -1,6 +1,11 @@
 <template>
     <div>
-        Main
+        <div>
+            Main
+        </div>
+        <div>
+            <Button type="info" @click="refreshToken()">RefreshToken</Button>
+        </div>
     </div>
 </template>
 
@@ -21,6 +26,21 @@ export default {
         }).catch(function (error) {
             console.log('## Main error ' + error);
         });
+    },
+    methods: {
+        refreshToken () {
+            console.log("刷新");
+            this.$http.ajax({
+                url: 'refreshToken',
+                method: 'get'
+            }).then(response => {
+                if (response) {
+                    console.log("## 刷新 response " + JSON.stringify(response.data));
+                }
+            }).catch(error => {
+                console.log("刷新 " + error);
+            });
+        }
     }
 }
 </script>
