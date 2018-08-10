@@ -36,6 +36,7 @@ export default {
             }).then(response => {
                 if (response) {
                     console.log("## 刷新 response " + JSON.stringify(response.data));
+                    localStorage.token = response.data.token;
                 }
             }).catch(error => {
                 console.log("刷新 " + error);

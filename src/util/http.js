@@ -23,14 +23,14 @@ let _router = router;
 
 // 响应拦截器
 http.ajax.interceptors.response.use(function (response) {
-    console.log("响应拦截器 " + JSON.stringify(response.data));
+    // console.log("响应拦截器 " + JSON.stringify(response.data));
     // console.log("拦截器 " + JSON.parse(response.data));
     if (response.data.code === 1001) {
         console.log("响应拦截器 生效");
         _router.push({name: 'Login'});
         return;
     }
-    console.log("响应拦截器 ");
+    // console.log("响应拦截器 ");
     return response;
 }, function (error) {
     console.log("响应拦截器错误");
@@ -39,8 +39,8 @@ http.ajax.interceptors.response.use(function (response) {
 
 // 请求拦截器
 http.ajax.interceptors.request.use(function (config) {
-    console.log("请求拦截器 " + JSON.stringify(config));
-    console.log("请求拦截器 " + config.headers.token);
+    // console.log("请求拦截器 " + JSON.stringify(config));
+    // console.log("请求拦截器 " + config.headers.token);
     config.headers.token = localStorage.token;
     // console.log("请求拦截器 " + JSON.stringify(config));
     console.log("请求拦截器 " + config.headers.token);
