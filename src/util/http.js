@@ -4,7 +4,8 @@ import router from '../router'
 
 let http = {};
 
-const ajaxUrl = 'http://localhost:8087';
+// const ajaxUrl = 'http://localhost:8087';
+const ajaxUrl = 'http://a.org:8088';
 
 http.baseUrl = ajaxUrl;
 
