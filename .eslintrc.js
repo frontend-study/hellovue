@@ -53,6 +53,8 @@ module.exports = {
     // 关闭注释前的空格
     "spaced-comment": 0,
     // 多个空行
-    "no-multiple-empty-lines": 0
+    "no-multiple-empty-lines": 0,
+    // 未使用变量
+    "no-unused-vars": 0
   }
 }

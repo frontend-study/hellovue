@@ -17,6 +17,9 @@
                 </FormItem>
             </Form>
         </div>
+        <div>
+            <Button type="info" @click="testSso()">TestSSO</Button>
+        </div>
     </div>
 </template>
 
@@ -92,6 +95,19 @@ export default {
                     // this.$Message.error('Fail!')
                 }
             })
+        }, 
+        testSso () {
+            console.log("sso");
+            this.$http.ajax({
+                url: '/index',
+                method: 'get'
+            }).then(response => {
+                if (response) {
+                    console.log(JSON.stringify(response.data));
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         }
     }
 }

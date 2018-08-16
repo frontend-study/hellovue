@@ -5,7 +5,7 @@ import router from '../router'
 let http = {};
 
 // const ajaxUrl = 'http://localhost:8087';
-const ajaxUrl = 'http://a.org:8088';
+const ajaxUrl = 'http://a.org:8071';
 
 http.baseUrl = ajaxUrl;
 
@@ -26,9 +26,11 @@ let _router = router;
 http.ajax.interceptors.response.use(function (response) {
     // console.log("响应拦截器 " + JSON.stringify(response.data));
     // console.log("拦截器 " + JSON.parse(response.data));
-    if (response.data.code === 1001) {
+    if (response.data.code === 1000) {
         console.log("响应拦截器 生效");
-        _router.push({name: 'Login'});
+        // _router.push({name: 'Login'});
+        // window.location.href = 'http://cas.ingress.ssdc.solutions/cas/login';
+        window.location.href = 'http://localhost:8070/index?query=http://localhost:8071/index'
         return;
     }
     // console.log("响应拦截器 ");
@@ -42,8 +44,10 @@ http.ajax.interceptors.response.use(function (response) {
 http.ajax.interceptors.request.use(function (config) {
     // console.log("请求拦截器 " + JSON.stringify(config));
     // console.log("请求拦截器 " + config.headers.token);
-    config.headers.token = localStorage.token;
-    // console.log("请求拦截器 " + JSON.stringify(config));
+    if (localStorage.token) {
+        config.headers.token = localStorage.token;
+        // console.log("请求拦截器 " + JSON.stringify(config));
+    }
     console.log("请求拦截器 " + config.headers.token);
 
     return config;
