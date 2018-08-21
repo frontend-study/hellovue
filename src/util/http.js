@@ -5,7 +5,8 @@ import router from '../router'
 let http = {};
 
 // const ajaxUrl = 'http://localhost:8087';
-const ajaxUrl = 'http://a.org:8071';
+// const ajaxUrl = 'http://a.org:8071';
+const ajaxUrl = 'http://a.sevenzero.org:8071';
 
 http.baseUrl = ajaxUrl;
 
@@ -30,7 +31,7 @@ http.ajax.interceptors.response.use(function (response) {
         console.log("响应拦截器 生效");
         // _router.push({name: 'Login'});
         // window.location.href = 'http://cas.ingress.ssdc.solutions/cas/login';
-        window.location.href = 'http://localhost:8070/index?query=http://localhost:8071/index'
+        window.location.href = 'http://sso.sevenzero.org:8070/index?qa=http://a.sevenzero.org:8071/index';
         return;
     }
     // console.log("响应拦截器 ");

@@ -25,6 +25,14 @@
 
 <script>
 export default {
+    created () {
+        if (window.name) {
+            console.log(window.name);
+        }
+        if (document.cookie) {
+            console.log(document.cookie);
+        }
+    },
     data () {
         return {
             formInline: {
@@ -96,8 +104,19 @@ export default {
                 }
             })
         }, 
+        /**
+         * 模拟打开主页
+         * 1. A 系统未登录，肯定要跳转到 SSO 认证中心去，带着 A 系统的参数，认证后还得跳转回来
+         * 2. SSO 先要判断是否已经登录
+         *  2.1 已经登录，
+         *  2.2 未登录，显示 SSO 的登录页面，登录后标识写入 cookie （相同根域名下可读），跳转回 A 系统（需要携带 ST: Service Ticket），然后 A 系统把 ST 发送到 SSO 去验证是否可用，验证成功
+         */
         testSso () {
             console.log("sso");
+            console.log("localStorage.ssoToken " + localStorage.ssoToken);
+            console.log(document.cookie);
+            window.name = 'MyValue';
+            console.log(window.name);
             this.$http.ajax({
                 url: '/index',
                 method: 'get'
