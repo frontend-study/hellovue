@@ -27,13 +27,13 @@ let _router = router;
 http.ajax.interceptors.response.use(function (response) {
     // console.log("响应拦截器 " + JSON.stringify(response.data));
     // console.log("拦截器 " + JSON.parse(response.data));
-    if (response.data.code === 1000) {
-        console.log("响应拦截器 生效");
-        // _router.push({name: 'Login'});
-        // window.location.href = 'http://cas.ingress.ssdc.solutions/cas/login';
-        window.location.href = 'http://sso.sevenzero.org:8070/index?qa=http://a.sevenzero.org:8071/index';
-        return;
-    }
+    // if (response.data.code === 1000) {
+    //     console.log("响应拦截器 生效");
+    //     // _router.push({name: 'Login'});
+    //     // window.location.href = 'http://cas.ingress.ssdc.solutions/cas/login';
+    //     window.location.href = 'http://sso.sevenzero.org:8070/index?qa=http://a.sevenzero.org:8071/index';
+    //     return;
+    // }
     // console.log("响应拦截器 ");
     return response;
 }, function (error) {
