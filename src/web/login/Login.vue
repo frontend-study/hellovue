@@ -19,6 +19,7 @@
         </div>
         <div>
             <Button type="info" @click="testSso()">TestSSO</Button>
+            <Button type="info" @click="testAjax()">TestAjax</Button>
         </div>
     </div>
 </template>
@@ -145,6 +146,8 @@ export default {
                                     // 
                                     let ssoServerValidate = 'http://sso.sevenzero.org:8070/validateServiceTicket?st=' + res.data.st + "&system=http://a.sevenzero.org:8071";
                                     console.log('验证 服务票据 ' + ssoServerValidate);
+
+                                    return '234';
                                 }
                             }
                         }).catch(err => {
@@ -152,8 +155,44 @@ export default {
                         });
                     }
                 }
+            }).then(response => {
+                // 
+                console.log("链式调用 " + JSON.stringify(response));
             }).catch(error => {
                 console.log('外error ' + error);
+            });
+        },
+        testAjax () {
+            console.log("test ajax");
+            this.$http.ajax({
+                url: '/hello',
+                method: 'get'
+            }).then(response => {
+                if (response) {
+                    console.log('AJAX- ' + response.data);
+                    let next = this.$http.ajax({
+                        url: '/hello',
+                        method: 'get'
+                    });
+                    return next;
+                }
+            }).then(response => {
+                // 
+                if (response) {
+                    console.log('AJAX-2 ' + response.data);
+                    let next = this.$http.ajax({
+                        url: '/hello',
+                        method: 'get'
+                    });
+                    return next;
+                }
+            }).then(response => {
+                // 
+                if (response) {
+                    console.log("AJAX-3 " + response.data);
+                }
+            }).catch(error => {
+                console.log('AJAX-error ' + error);
             });
         }
     }

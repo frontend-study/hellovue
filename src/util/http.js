@@ -49,7 +49,7 @@ http.ajax.interceptors.request.use(function (config) {
         config.headers.token = localStorage.token;
         // console.log("请求拦截器 " + JSON.stringify(config));
     }
-    console.log("请求拦截器 " + config.headers.token);
+    // console.log("请求拦截器 " + config.headers.token);
 
     return config;
 }, function (error) {
