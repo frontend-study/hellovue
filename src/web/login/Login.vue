@@ -123,43 +123,52 @@ export default {
                 method: 'get'
             }).then(response => {
                 if (response) {
-                    console.log('外 ' + JSON.stringify(response.data));
+                    console.log('AAA ' + JSON.stringify(response.data));
+                    // A 系统 token 为空(1000)，或者是过期(1001)，跳到 SSO 认证中心
                     if (response.data.code === 1000 || response.data.code === 1001) {
                         // window.location.href = 'http://sso.sevenzero.org:8070/login?qa=http://a.sevenzero.org:8071/index&' + document.cookie;
 
                         // document.cookie 中的 gssoc 需要作判断，是否存在
                         let ssoServer = 'http://sso.sevenzero.org:8070/login?qa=http://a.sevenzero.org:8071/index&' + document.cookie;
-                        console.log('ssoServer ' + ssoServer);
-                        this.$http.ajax({
+                        console.log('认证地址 ssoServer ' + ssoServer);
+                        let next = this.$http.ajax({
                             url: ssoServer,
                             method: 'get'
-                        }).then(res => {
-                            //
-                            if (res) {
-                                console.log('内 ' + JSON.stringify(res.data));
-                                if (res.data.code === 1001) {
-                                    window.location.href = 'http://sso.sevenzero.org:8088/#/login?qa=http://a.sevenzero.org:8071/index';
-                                }
-
-                                // SSO 已登录，解析出 Service Ticket
-                                if (res.data.st) {
-                                    // 
-                                    let ssoServerValidate = 'http://sso.sevenzero.org:8070/validateServiceTicket?st=' + res.data.st + "&system=http://a.sevenzero.org:8071";
-                                    console.log('验证 服务票据 ' + ssoServerValidate);
-
-                                    return '234';
-                                }
-                            }
-                        }).catch(err => {
-                            console.log('内err ' + err);
                         });
+
+                        return next;
                     }
                 }
-            }).then(response => {
+            }).then(res => {
                 // 
-                console.log("链式调用 " + JSON.stringify(response));
+                console.log('链式调用 ' + JSON.stringify(res.data));
+                if (res) {
+                    // 全局标识不存在(1000)，或者过期(1001)
+                    if (res.data.code === 1000 || res.data.code === 1001) {
+                        window.location.href = 'http://sso.sevenzero.org:8088/#/login?qa=http://a.sevenzero.org:8071/index';
+                    }
+
+                    // 全局标识存在，则证明 SSO 已登录，解析出 Service Ticket
+                    if (res.data.st) {
+                        // 
+                        // let ssoServerValidate = 'http://sso.sevenzero.org:8070/validateServiceTicket?st=' + res.data.st + "&system=http://a.sevenzero.org:8071";
+                        // console.log('验证 服务票据 地址 ' + ssoServerValidate);
+                        let backendUrl = '/index?st=' + res.data.st;
+                        console.log('后台地址 ' + backendUrl);
+                        
+                        let next = this.$http.ajax({
+                            url: backendUrl,
+                            method: 'get'
+                        });
+
+                        return next;
+                    }
+                }
+            }).then(res => {
+                // 
+                console.log('链式调用2 ' + JSON.stringify(res.data));
             }).catch(error => {
-                console.log('外error ' + error);
+                console.log('error ' + error);
             });
         },
         testAjax () {
